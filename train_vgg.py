@@ -24,12 +24,14 @@ depthnet.summary()
 
 depthnet.compile(loss='mean_absolute_error', optimizer='rmsprop')
 
-dataset = dataset(batch_size=6, samples_train=1000, samples_val=200)
+dataset = dataset.dataset(batch_size=6, samples_train=1000, samples_val=200)
 
-history= model2.fit_generator(
+history= depthnet.fit_generator(
 	dataset.train_generator('/imatge/jmorera/work/train.txt'),
 	nb_epoch = 20,
 	verbose=1,
+	steps_per_epoch=50,
+	validation_steps=10,
 	validation_data=dataset.val_generator('/imatge/jmorera/work/val.txt'))
 
 
