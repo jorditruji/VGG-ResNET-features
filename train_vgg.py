@@ -1,4 +1,4 @@
-from Data_utils import * 
+from Data_utils import dataset, data_load
 import tensorflow as tf
 from keras.optimizers import SGD, Adam
 from keras.layers import Dense, Conv2DTranspose
