@@ -24,7 +24,7 @@ depthnet.summary()
 
 depthnet.compile(loss='mean_absolute_error', optimizer='rmsprop')
 
-dataset = dataset(batch_size=6, samples_train=1000, samples_val=200)
+dataset = dataset.dataset(batch_size=6, samples_train=1000, samples_val=200)
 
 history= model2.fit_generator(
 	dataset.train_generator('/imatge/jmorera/work/train.txt'),
