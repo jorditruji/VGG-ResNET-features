@@ -25,7 +25,7 @@ out =Conv2DTranspose(128,(3, 3),strides=(2, 2), padding='same', name='block3_dec
 out =Conv2DTranspose(64,(3, 3),strides=(2, 2), padding='same', name='block2_deconv', activation='relu')(out)
 out =Conv2DTranspose(1,(3, 3),strides=(2, 2), padding='same', name='block1_deconv')(out)
 
-inp = vgg.input
+#inp = vgg.input
 depthnet = Model(inputs, out)
 depthnet.summary()
 
