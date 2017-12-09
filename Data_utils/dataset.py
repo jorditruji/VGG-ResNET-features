@@ -1,5 +1,5 @@
 import numpy as np
-from data_load import *
+import data_load
 
 
 class dataset:
