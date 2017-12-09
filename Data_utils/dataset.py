@@ -201,9 +201,7 @@ class dataset:
                     if i%self.batch_size==0:
                         images=np.array(images)
                         labels=np.array(labels)
-                        print (labels.shape)
                         labels=labels.reshape((self.batch_size, 640, 480, 1))
-                        print (labels.shape)
                         images= np.squeeze(images)
                         yield images, labels
                         images = []
