@@ -189,7 +189,7 @@ class dataset:
                     file_names =line.strip().split(' ')
                     img=read_image(file_names[0])
                     float_img = img.astype('float16')
-                    centered_image = float_img - DATA_MEAN
+                    centered_image = float_img - self.data_mean
                     bgr_image = centered_image[:, :, ::-1]  # RGB => BGR
                     input_data = bgr_image[np.newaxis, :, :, :] 
                     images.append(input_data)
