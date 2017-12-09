@@ -1,6 +1,6 @@
 import numpy as np
 from itertools import islice
-
+from data_load import read_image
 
 class dataset:
     """
