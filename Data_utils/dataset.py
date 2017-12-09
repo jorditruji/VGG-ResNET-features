@@ -169,7 +169,7 @@ class dataset:
                         images=np.array(images)
                         labels=np.array(labels)
                         print (labels.shape)
-                        labels=labels.reshape((num_img, 640, 480, 1))
+                        labels=labels.reshape((self.batch_size, 640, 480, 1))
                         print (labels.shape)
                         images= np.squeeze(images)
                         yield images, labels
@@ -202,7 +202,7 @@ class dataset:
                         images=np.array(images)
                         labels=np.array(labels)
                         print (labels.shape)
-                        labels=labels.reshape((num_img, 640, 480, 1))
+                        labels=labels.reshape((self.batch_size, 640, 480, 1))
                         print (labels.shape)
                         images= np.squeeze(images)
                         yield images, labels
