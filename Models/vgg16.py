@@ -9,21 +9,14 @@ from __future__ import absolute_import
 import os
 import warnings
 
-from ..models import Model
-from ..layers import Flatten
-from ..layers import Dense
-from ..layers import Input
-from ..layers import Conv2D
-from ..layers import MaxPooling2D
-from ..layers import GlobalAveragePooling2D
-from ..layers import GlobalMaxPooling2D
-from ..engine.topology import get_source_inputs
-from ..utils import layer_utils
-from ..utils.data_utils import get_file
-from .. import backend as K
-from .imagenet_utils import decode_predictions
-from .imagenet_utils import preprocess_input
-from .imagenet_utils import _obtain_input_shape
+from keras.models import Model
+from keras.layers import Flatten, Dense, Input, Conv2D, MaxPooling2D, GlobalAveragePooling2D, GlobalMaxPooling2D
+from keras.engine.topology import get_source_inputs
+from keras.utils import layer_utils
+from keras.utils.data_utils import get_file
+from keras import backend as K
+from keras.applications.imagenet_utils import decode_predictions, preprocess_input, _obtain_input_shape
+
 
 
 WEIGHTS_PATH = 'https://github.com/fchollet/deep-learning-models/releases/download/v0.1/vgg16_weights_tf_dim_ordering_tf_kernels.h5'
@@ -88,13 +81,6 @@ def VGG16(include_top=True, weights='imagenet',
     if weights == 'imagenet' and include_top and classes != 1000:
         raise ValueError('If using `weights` as imagenet with `include_top`'
                          ' as true, `classes` should be 1000')
-    # Determine proper input shape
-    input_shape = _obtain_input_shape(input_shape,
-                                      default_size=224,
-                                      min_size=48,
-                                      data_format=K.image_data_format(),
-                                      require_flatten=include_top,
-                                      weights=weights)
 
     if input_tensor is None:
         img_input = Input(shape=input_shape)
@@ -187,4 +173,4 @@ def VGG16(include_top=True, weights='imagenet',
     elif weights is not None:
         model.load_weights(weights)
 
-return model
+    return model
