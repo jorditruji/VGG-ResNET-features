@@ -1,7 +1,7 @@
 from Data_utils import dataset, data_load
 import tensorflow as tf
 from keras.optimizers import SGD, Adam
-from keras.layers import Dense, Conv2DTranspose, Conv2D, Input
+from keras.layers import Dense, Conv2DTranspose, Conv2D, Input, MaxPooling2D
 from keras.utils import np_utils
 from keras.models import Model
 import numpy as np
@@ -31,14 +31,14 @@ depthnet.summary()
 
 depthnet.compile(loss='mean_absolute_error', optimizer='sgd')
 
-dataset = dataset.dataset(batch_size=6, samples_train=50000, samples_val=15000)
+dataset = dataset.dataset(batch_size=6, samples_train=7000, samples_val=3000)
 
 history= depthnet.fit_generator(
 	dataset.train_generator('/imatge/jmorera/work/train.txt'),
 	nb_epoch = 50,
 	verbose=1,
-	steps_per_epoch=5000,
-	validation_steps=1500,
+	steps_per_epoch=1000,
+	validation_steps=350,
 	validation_data=dataset.val_generator('/imatge/jmorera/work/val.txt'))
 
 
