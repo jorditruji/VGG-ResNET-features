@@ -80,7 +80,7 @@ def read_pgm(filename, byteorder='>'):
                             offset=len(header)
                             ).reshape((int(height), int(width)))
 
-def img2int(img):
+def img2int(img,norm_depth):
     zmax=np.max(img)
     norm_img=np.zeros(img.shape,dtype=np.uint8)
     mask=np.zeros(img.shape,dtype=np.uint8)
@@ -103,7 +103,7 @@ def img2int(img):
 
     dst_TELEA = cv2.inpaint(norm_img,mask,3,cv2.INPAINT_TELEA)
     dst_TELEA=equalize_hist(dst_TELEA)
-    if self.norm_depth:
+    if norm_depth:
         dst_TELEA=normalize(dst_TELEA)
     return dst_TELEA
 
@@ -168,7 +168,7 @@ class dataset:
                     input_data = bgr_image[np.newaxis, :, :, :] 
                     images.append(input_data)
                     label=file_names[1]
-                    labels.append(img2int(read_pgm(label[:-4],'>')))
+                    labels.append(img2int(read_pgm(label[:-4],'>'),self.norm_depth))
 
                     if i%self.batch_size==0:
                         images=np.array(images)
