@@ -8,6 +8,7 @@ import shutil
 from keras.utils import np_utils
 import random
 import cv2
+from sklearn.preprocessing import normalize
 from scipy import misc, ndimage, io
 import re
 from itertools import product
@@ -102,6 +103,8 @@ def img2int(img):
 
     dst_TELEA = cv2.inpaint(norm_img,mask,3,cv2.INPAINT_TELEA)
     dst_TELEA=equalize_hist(dst_TELEA)
+    if self.norm_depth:
+        dst_TELEA=normalize(dst_TELEA)
     return dst_TELEA
 
 
@@ -134,13 +137,15 @@ class dataset:
                 - batch_size => number of images to delivered every batch
                 - samples_train => total number of images on training_dataset
                 - samples_val => total number of images on validation_dataset
+                - normalize_depth => normalize depth targets between 0 and 1
 
     """
 
-    def __init__(self, batch_size, samples_train, samples_val):
+    def __init__(self, batch_size, samples_train, samples_val,normalize_depth):
         self.samples_train = samples_train
         self.samples_val = samples_val
         self.batch_size = batch_size
+        self.norm_depth = normalize_depth
         self.data_mean = np.array([[[126.92261499, 114.11585906, 99.15394194]]])  # RGB order
 
     def train_generator(self, filename):
