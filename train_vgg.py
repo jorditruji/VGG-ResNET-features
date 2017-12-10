@@ -1,6 +1,6 @@
 from Data_utils import dataset, data_load
 import tensorflow as tf
-from keras.optimizers import SGD, Adam
+from keras.optimizers import SGD, Adam, RMSprop
 from keras.layers import Dense, Conv2DTranspose, Conv2D, Input, MaxPooling2D
 from keras.utils import np_utils
 from keras.models import Model
@@ -55,8 +55,10 @@ out =Conv2DTranspose(1,(3, 3),strides=(2, 2), padding='same', name='block1_decon
 #inp = vgg.input
 depthnet = Model(inputs, out)
 depthnet.summary()
+optimizer=RMSprop(lr=0.01)
 
-depthnet.compile(loss='mean_absolute_error', optimizer='adam')
+
+depthnet.compile(loss='mean_absolute_error', optimizer=optimizer)
 # initialize dataset
 dataset = dataset.dataset(batch_size=16, samples_train=1000, samples_val=300,normalize_depth=False)
 
