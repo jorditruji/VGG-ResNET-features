@@ -1,6 +1,6 @@
-## VGG-ResNET-features
+# VGG-ResNET-features
 
-# Requirements (virtuals env I'm working with):
+## Requirements (virtuals env I'm working with):
 backports-abc==0.5
 bleach==1.5.0
 cycler==0.10.0
