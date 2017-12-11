@@ -39,7 +39,7 @@ def mini_vgg(input_shape,extra_conv,decoder):
 vgg = vgg16.VGG16(include_top=False, weights='imagenet', input_shape=(640, 480, 3))
 for i in range(12):
 	vgg.layers.pop()
-vgg.summary()
+
 inputs = Input(shape=(640, 480, 3))
 #out = Dense(1, name='my_dense',activation='relu')(vgg.layers[-1].output)
 '''
@@ -50,16 +50,18 @@ out = Conv2D(128, (3, 3), activation='relu', padding='same', name='block2_conv1'
 #out = MaxPooling2D((2, 2), strides=(2, 2), name='block2_pool')(out)
 #out = Conv2D(256, (3, 3), activation='relu', padding='same', name='block3_conv1')(out)
 #out = MaxPooling2D((2, 2), strides=(2, 2), name='block3_pool')(out)
-
+'''
 #drop+deconv
-out = Dropout(0.5)(out)
+#out = Dropout(0.5)(out)
+out=Conv2DTranspose(128,(3, 3),strides=(2, 2), padding='same', name='block4_deconv', activation='relu')(vgg.layers[-1].output)
+out=Dropout(0.5)(out)
 out=Conv2DTranspose(1,(3, 3),strides=(2, 2), padding='same', name='block5_deconv', activation='relu')(out)
 
 #inp = vgg.input
-depthnet = Model(inputs, out)
+depthnet = Model(vgg.input, out)
 depthnet.summary()
-optimizer=RMSprop(lr=0.01)
-'''
+
+
 
 vgg.compile(loss='mean_absolute_error', optimizer='adam')
 # initialize dataset
