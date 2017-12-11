@@ -1,6 +1,6 @@
 # VGG-ResNET-features
 
-## Requirements (virtuals env I'm working with): \n
+Requirements (virtuals env I'm working with): 
 backports-abc==0.5
 bleach==1.5.0
 cycler==0.10.0
@@ -61,7 +61,7 @@ typing==3.6.2
 wcwidth==0.1.7
 Werkzeug==0.12.2
 
-#Requirements 2:
+Requirements 2:
 CUDA /8.0
 Cudnn/ 6.0
 
