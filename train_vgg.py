@@ -37,7 +37,7 @@ def mini_vgg(input_shape,extra_conv,decoder):
 
 #CREATE VGG CONV NET (FULL CONVNET PRETRAINED WITH IMAGENET)
 vgg = vgg16.VGG16(include_top=False, weights='imagenet', input_shape=(640, 480, 3))
-for i in range(12):
+for i in range(9):
 	vgg.layers.pop()
 
 inputs = Input(shape=(640, 480, 3))
@@ -65,14 +65,14 @@ depthnet.summary()
 
 depthnet.compile(loss='mean_absolute_error', optimizer='adam')
 # initialize dataset
-dataset = dataset.dataset(batch_size=16, samples_train=1000, samples_val=300,normalize_depth=False)
+dataset = dataset.dataset(batch_size=15, samples_train=6000, samples_val=1500,normalize_depth=False)
 
 history= depthnet.fit_generator(
 	dataset.train_generator('/imatge/jmorera/work/train.txt'),
 	nb_epoch = 50,
 	verbose=1,
-	steps_per_epoch=20,
-	validation_steps=6,
+	steps_per_epoch=400,
+	validation_steps=100,
 	validation_data=dataset.val_generator('/imatge/jmorera/work/val.txt'))
 
 
