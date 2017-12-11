@@ -63,7 +63,7 @@ depthnet.summary()
 
 
 
-vgg.compile(loss='mean_absolute_error', optimizer='adam')
+depthnet.compile(loss='mean_absolute_error', optimizer='adam')
 # initialize dataset
 dataset = dataset.dataset(batch_size=16, samples_train=1000, samples_val=300,normalize_depth=False)
 
