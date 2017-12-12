@@ -52,7 +52,7 @@ out = Conv2D(128, (3, 3), activation='relu', padding='same', name='block2_conv1'
 #out = MaxPooling2D((2, 2), strides=(2, 2), name='block3_pool')(out)
 '''
 #drop+deconv
-out = Dropout(0.5)(vgg.layers[-1].output)
+#out = Dropout(0.5)(vgg.layers[-1].output)
 #out = Dense(128, name='my_dense',activation='relu')(out)
 out=Conv2DTranspose(1,(3, 3),strides=(4, 4), padding='same', name='block5_deconv')(out)
 
