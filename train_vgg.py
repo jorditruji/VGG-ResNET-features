@@ -69,7 +69,7 @@ depthnet.summary()
 
 depthnet.compile(loss='mean_absolute_error', optimizer='adam')
 # initialize dataset
-dataset = dataset.dataset(batch_size=15, samples_train=6000, samples_val=1500,normalize_depth=False)
+dataset = dataset.dataset(batch_size=15, samples_train=600, samples_val=150,normalize_depth=False)
 
 history= depthnet.fit_generator(
 	dataset.train_generator('/imatge/jmorera/work/train.txt'),
