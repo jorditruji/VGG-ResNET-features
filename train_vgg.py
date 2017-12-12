@@ -37,7 +37,7 @@ def mini_vgg(input_shape,extra_conv,decoder):
 
 #CREATE VGG CONV NET (FULL CONVNET PRETRAINED WITH IMAGENET)
 vgg = vgg16.VGG16(include_top=False, weights='imagenet', input_shape=(640, 480, 3))
-for i in range(9):
+for i in range(12):
 	vgg.layers.pop()
 
 inputs = Input(shape=(640, 480, 3))
@@ -52,11 +52,15 @@ out = Conv2D(128, (3, 3), activation='relu', padding='same', name='block2_conv1'
 #out = MaxPooling2D((2, 2), strides=(2, 2), name='block3_pool')(out)
 '''
 #drop+deconv
-#out = Dropout(0.5)(out)
+out = Dropout(0.5)(vgg.layers[-1].output)
+out = Dense(128, name='my_dense',activation='relu')
+out=Conv2DTranspose(1,(3, 3),strides=(2, 2), padding='same', name='block5_deconv')(out)
+
+'''
 out=Conv2DTranspose(128,(3, 3),strides=(2, 2), padding='same', name='block4_deconv', activation='relu')(vgg.layers[-1].output)
 out=Dropout(0.5)(out)
 out=Conv2DTranspose(1,(3, 3),strides=(2, 2), padding='same', name='block5_deconv')(out)
-
+'''
 #inp = vgg.input
 depthnet = Model(vgg.input, out)
 depthnet.summary()
@@ -71,8 +75,8 @@ history= depthnet.fit_generator(
 	dataset.train_generator('/imatge/jmorera/work/train.txt'),
 	nb_epoch = 50,
 	verbose=1,
-	steps_per_epoch=400,
-	validation_steps=100,
+	steps_per_epoch=50,
+	validation_steps=10,
 	validation_data=dataset.val_generator('/imatge/jmorera/work/val.txt'))
 
 
