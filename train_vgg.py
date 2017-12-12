@@ -55,7 +55,7 @@ out = Conv2D(128, (3, 3), activation='relu', padding='same', name='block2_conv1'
 #out = Dropout(0.5)(out)
 out=Conv2DTranspose(128,(3, 3),strides=(2, 2), padding='same', name='block4_deconv', activation='relu')(vgg.layers[-1].output)
 out=Dropout(0.5)(out)
-out=Conv2DTranspose(1,(3, 3),strides=(2, 2), padding='same', name='block5_deconv', activation='relu')(out)
+out=Conv2DTranspose(1,(3, 3),strides=(2, 2), padding='same', name='block5_deconv')(out)
 
 #inp = vgg.input
 depthnet = Model(vgg.input, out)
