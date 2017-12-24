@@ -32,8 +32,8 @@ def build_model(encoder_dim=50, bottleneck_dim=20):
 	depthnet = Model(inputs, out)
 	depthnet.summary()
 	return depthnet
-net = build_model()
-net.summary()
+depthnet = build_model()
+depthnet.summary()
 
 
 
