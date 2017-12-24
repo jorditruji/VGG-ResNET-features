@@ -22,7 +22,7 @@ def build_model(encoder_dim=50, bottleneck_dim=20):
 	out=UpSampling2D((2,2), name='up1')(out)
 	out = Conv2D(128, (5, 5), activation='relu', padding='same', name='block2_deconv1')(out)
 	out=UpSampling2D((2,2), name='up2')(out)
-	out= Conv2D(64, (9, 9), activation='relu', padding='same', name='block1_deconv1')(out)
+	out= Conv2D(1, (9, 9), activation='relu', padding='same', name='block1_deconv1')(out)
 	out=UpSampling2D((2,2), name='up3')(out)
 	'''
 	out =Flatten()(out)
