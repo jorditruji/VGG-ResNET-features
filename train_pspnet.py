@@ -8,7 +8,7 @@ import numpy as np
 from Models import vgg16
 from layers_builder import *
 
-input_shape=(640,480,3)
+input_shape=(640,480)
 
 pspnet=build_pspnet( 1,50, input_shape)
 
