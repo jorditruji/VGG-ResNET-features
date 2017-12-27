@@ -16,12 +16,12 @@ pspnet.summary()
 
 
 # initialize dataset
-dataset = dataset.dataset(batch_size=15, samples_train=600, samples_val=150,normalize_depth=False)
+dataset = dataset.dataset(batch_size=10, samples_train=45000, samples_val=15000,normalize_depth=False)
 
 history= pspnet.fit_generator(
 	dataset.train_generator('/imatge/jmorera/work/train.txt'),
 	nb_epoch = 50,
 	verbose=1,
-	steps_per_epoch=50,
-	validation_steps=10,
+	steps_per_epoch=4500,
+	validation_steps=1500,
 	validation_data=dataset.val_generator('/imatge/jmorera/work/val.txt'))
