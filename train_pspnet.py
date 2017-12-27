@@ -16,7 +16,7 @@ pspnet.summary()
 
 
 # initialize dataset
-dataset = dataset.dataset(batch_size=10, samples_train=45000, samples_val=15000,normalize_depth=False)
+dataset = dataset.dataset(batch_size=8, samples_train=45000, samples_val=15000,normalize_depth=False)
 
 history= pspnet.fit_generator(
 	dataset.train_generator('/imatge/jmorera/work/train.txt'),
