@@ -241,7 +241,7 @@ def build_pspnet(nb_classes, resnet_layers, input_shape):
 
     # Solver
     sgd = SGD(lr=learning_rate, momentum=0.9, nesterov=True)
-    model.compile(optimizer=adam,
+    model.compile(optimizer=sgd,
                   loss='mean_absolute_error',
                   )
     return model
