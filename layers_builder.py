@@ -176,7 +176,7 @@ def interp_block(prev_layer, level, feature_map_shape, input_shape):
                               6: 15}
     elif input_shape == (640, 480):
 
-        kernel_strides_map = {1: 70,
+        kernel_strides_map = {1: 60,
                               2: 34,
                               3: 16,
                               6: 12}
