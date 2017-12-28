@@ -229,8 +229,8 @@ def build_pspnet(nb_classes, resnet_layers, input_shape):
     out = MaxPooling2D((2, 2), strides=(2, 2), name='block1_pool')(out)
     out = Conv2D(128, (5, 5), activation='relu', padding='same', name='block2_conv1')(out)
     out = MaxPooling2D((2, 2), strides=(2, 2), name='block2_pool')(out)
-    #out = Conv2D(256, (3, 3), activation='relu', padding='same', name='block3_conv1')(out)
-    #out = MaxPooling2D((2, 2), strides=(2, 2), name='block3_pool')(out)
+    out = Conv2D(256, (3, 3), activation='relu', padding='same', name='block3_conv1')(out)
+    out = MaxPooling2D((2, 2), strides=(2, 2), name='block3_pool')(out)
     psp = build_pyramid_pooling_module(out, input_shape)
 
     x = Conv2D(512, (3, 3), strides=(1, 1), padding="same", name="conv5_4",
