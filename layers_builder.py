@@ -224,8 +224,8 @@ def build_pspnet(nb_classes, resnet_layers, input_shape):
     print("Building a PSPNet based on ResNet %i expecting inputs of shape %s predicting %i classes" % (resnet_layers, input_shape, nb_classes))
 
     inp = Input((input_shape[0], input_shape[1], 3))
-    res = ResNet(inp, layers=resnet_layers)
-    #psp = build_pyramid_pooling_module(res, input_shape)
+    #res = ResNet(inp, layers=resnet_layers)
+    psp = build_pyramid_pooling_module(inp, input_shape)
 
     x = Conv2D(512, (3, 3), strides=(1, 1), padding="same", name="conv5_4",
                use_bias=False)(res)
