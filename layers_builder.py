@@ -234,7 +234,7 @@ def build_pspnet(nb_classes, resnet_layers, input_shape):
     psp = build_pyramid_pooling_module(out, input_shape)
 
     x = Conv2D(512, (3, 3), strides=(1, 1), padding="same", name="conv5_4",
-               use_bias=False)(res)
+               use_bias=False)(psp)
     x = BN(name="conv5_4_bn")(x)
     x = Activation('relu')(x)
     x = Dropout(0.1)(x)
